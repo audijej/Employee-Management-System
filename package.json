@@ -1,0 +1,26 @@
+{
+  "name": "employee-management-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/audijej/Employee-Management-System.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/audijej/Employee-Management-System/issues"
+  },
+  "homepage": "https://github.com/audijej/Employee-Management-System#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "inquirer": "^7.2.0",
+    "mysql": "^2.18.1"
+  }
+}
