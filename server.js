@@ -18,7 +18,7 @@ var connection = mysql.createConnection({
 
 connection.connect(function (err) {
     if (err) throw err;
-    console.log("Successfully connected");
+    console.log("connected as id " + connection.threadId + "\n");
     decisions();
 });
 
@@ -46,31 +46,96 @@ function decisions() {
             switch (data.decision) {
                 case "View all employees":
                     console.log("all employees");
+                    viewAllEmployees();
                     break;
                 case "View all employees by department":
                     console.log("all employees in the department");
+                    viewAllEmployeesByDepartment();
                     break;
                 case "View all employees by manager":
                     console.log("all employees via manager");
+                    viewAllEmployeesByManager();
                     break;
                 case "Add an employee":
                     console.log("addition of employee");
+                    addEmployee();
                     break;
                 case "Remove an employee":
                     console.log("remove the employee");
+                    removeEmployee();
                     break;
                 case "Update employee role":
                     console.log("update the role");
+                    updateEmployeeRole();
                     break;
                 case "Update employee manager":
                     console.log("update this employees manager");
+                    updateEmployeeManager();
                     break;
                 case "Remove employee role":
                     console.log("remove this employees role");
+                    removeEmployeeRole();
                     break;
                 case "View all roles":
                     console.log("roles");
+                    viewAllRoles();
                     break;
             }
         })
+}
+
+function viewAllEmployees(){
+    var query = "SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, department.department ";
+    query += "FROM department INNER JOIN role ON department.id = role.id ";
+    query =+ "INNER JOIN employee ON role.id = employee.id"
+    connection.query(query, function(err, res) {
+            console.table(res);
+        
+        decisions();
+      });
+};
+
+function viewAllEmployeesByDepartment() {
+    var query = "SELECT employee.id, employee.first_name, employee.last_name, department.department ";
+    query += "FROM employee INNER JOIN department ON employee.id = department.id ";
+    connection.query(query, function(err, res) {
+            console.table(res);
+        
+        decisions();
+      });
+};
+
+function viewAllEmployeesByManager() {
+    console.log("Hello Hello Hello World");
+    console.table();
+};
+
+function addEmployee(){
+    console.log("Hello Hello Hello Hello World");
+    console.table();
+};
+
+function removeEmployee() {
+    console.log("Hello Hello Hello Hello Hello World");
+    console.table();
+};
+
+function updateEmployeeRole() {
+    console.log("Hello Hello Hello Hello Hello Hello World");
+    console.table();
+};
+
+function updateEmployeeManager(){
+    console.log("Hello Hello Hello Hello Hello Hello World");
+    console.table();
+};
+
+function removeEmployeeRole() {
+    console.log("Hello Hello Hello Hello Hello Hello Hello World");
+    console.table();
+};
+
+function viewAllRoles() {
+    console.log("Hello Hello Hello Hello Hello Hello Hello Hello World");
+    console.table();
 }
