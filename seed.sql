@@ -31,10 +31,10 @@ SELECT * FROM role;
 SELECT * FROM employee;
 
 INSERT INTO department (id, department)
-VALUES (1, "Board of Directors"), (2, "Board of Directors");
+VALUES (1, "Board of Directors"), (2, "Board of Directors"), (3, "Human Resources"), (4, "Engineering");
 
 INSERT INTO role (id, title, salary, department_id)
-VALUES (1, "CEO", 11500000.00, 1), (2, "CFO", 8000000, 2);
+VALUES (1, "CEO", 11500000.00, 1), (2, "CFO", 8000000, 1), (3, "HR Supervisor", 60000, 2), (4, "Software Engineer", 75000, 11);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (1, "Bill", "Gates", 1, 1), (2, "Paul", "Allen", 2, 2)
+VALUES (1, "Bill", "Gates", 1, 1), (2, "Paul", "Allen", 2, 2), (3, "Michelle", "Smith", 3, 10), (4, "Ron", "Burgundy", 4, 22)

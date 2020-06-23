@@ -84,25 +84,49 @@ function decisions() {
         })
 }
 
-function viewAllEmployees(){
+function viewAllEmployees() {
     var query = "SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, department.department ";
     query += "FROM department INNER JOIN role ON department.id = role.id ";
-    query =+ "INNER JOIN employee ON role.id = employee.id"
-    connection.query(query, function(err, res) {
-            console.table(res);
-        
+    query += "INNER JOIN employee ON role.id = employee.id";
+    console.log(query)
+    connection.query(query, function (err, res) {
+        if (err) throw err;
+        console.table(res);
+
         decisions();
-      });
+    });
 };
 
 function viewAllEmployeesByDepartment() {
-    var query = "SELECT employee.id, employee.first_name, employee.last_name, department.department ";
-    query += "FROM employee INNER JOIN department ON employee.id = department.id ";
-    connection.query(query, function(err, res) {
-            console.table(res);
-        
-        decisions();
-      });
+    inquirer
+        .prompt([
+            {
+                type: "list",
+                message: "What department would you like to see?",
+                name: "departmentView",
+                choices: [
+                    "Board of Directors",
+                    "Human Resources",
+                    "Engineering",
+                    "Accounting",
+                    "Legal",
+                    "Sales",
+                ]
+            }
+        ]).then(function (answer) {
+            console.log(answer);
+            var query = "SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, department.department ";
+            query += "FROM department INNER JOIN role ON department.id = role.id ";
+            query += "INNER JOIN employee ON role.id = employee.id ";
+            query += "WHERE department.department = '" + answer.departmentView + "';"
+            connection.query(query, function (err, res) {
+                if (err) throw err;
+                    console.table(res);
+                // decisions();
+            });
+        });
+
+
 };
 
 function viewAllEmployeesByManager() {
@@ -110,7 +134,7 @@ function viewAllEmployeesByManager() {
     console.table();
 };
 
-function addEmployee(){
+function addEmployee() {
     console.log("Hello Hello Hello Hello World");
     console.table();
 };
@@ -125,7 +149,7 @@ function updateEmployeeRole() {
     console.table();
 };
 
-function updateEmployeeManager(){
+function updateEmployeeManager() {
     console.log("Hello Hello Hello Hello Hello Hello World");
     console.table();
 };
