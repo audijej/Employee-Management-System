@@ -121,8 +121,8 @@ function viewAllEmployeesByDepartment() {
             query += "WHERE department.department = '" + answer.departmentView + "';"
             connection.query(query, function (err, res) {
                 if (err) throw err;
-                    console.table(res);
-                // decisions();
+                console.table(res);
+                decisions();
             });
         });
 
@@ -160,6 +160,32 @@ function removeEmployeeRole() {
 };
 
 function viewAllRoles() {
-    console.log("Hello Hello Hello Hello Hello Hello Hello Hello World");
-    console.table();
+    inquirer
+        .prompt([
+            {
+                type: "list",
+                message: "What role would you like to see?",
+                name: "roleView",
+                choices: [
+                    "CEO",
+                    "CFO",
+                    "Software Engineer",
+                    "HR Supervisor",
+                    "Accountant",
+                    "Lawer",
+                ]
+            }
+        ]).then(function (answer) {
+            console.log(answer);
+            var query = "SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, department.department ";
+            query += "FROM department INNER JOIN role ON department.id = role.id ";
+            query += "INNER JOIN employee ON role.id = employee.id ";
+            query += "WHERE role.title = '" + answer.roleView + "';"
+            connection.query(query, function (err, res) {
+                if (err) throw err;
+                console.table(res);
+                decisions();
+            });
+        });
+    
 }
