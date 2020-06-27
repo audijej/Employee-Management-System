@@ -2,7 +2,10 @@ var mysql = require("mysql");
 var inquirer = require("inquirer");
 var password = require("dotenv").config()
 
-var profile = [];
+let profile = [];
+let employeeNameArray = [];
+let employeeIdArray = [];
+let deleteEmployeeArray = [];
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -298,9 +301,10 @@ function addEmployee() {
         .then(function (answer) {
             let newEmployee = [answer.employeeId, answer.first_name, answer.last_name, answer.title, answer.department];
             profile.push(newEmployee);
+
             console.log("New employee added");
-            var query = "INSERT INTO employee VALUES (?,?,?,?,?)";
-            connection.query(query, newEmployee, function (err, res) {
+            var query = "INSERT INTO employee VALUES (?)";
+            connection.query(query, answer, function (err, res) {
                 if (err) throw err;
                 console.table(res);
                 decisions();
@@ -309,8 +313,34 @@ function addEmployee() {
 };
 
 function removeEmployee() {
-    console.log("Hello Hello Hello Hello Hello World");
-    console.table();
+
+    connection.query("SELECT * FROM employee", function (err, res) {
+        if (err) throw err;
+        for (let i = 0; i < res.length; i++) {
+            let employeeNameList = res[i].id + ' ' + res[i].first_name + ' ' + res[i].last_name;
+            employeeNameArray.push(employeeNameList);
+            console.log(employeeNameArray);
+        };
+        inquirer
+            .prompt([
+                {
+                    type: "list",
+                    message: "Which employee would you like to delete from the roster?",
+                    name: "delete_employee",
+                    choices: employeeNameArray
+                }
+            ]).then(function (answer) {
+                let deleteEmployee = answer.delete_employee.split('', 1);
+                connection.query("DELETE FROM employee WHERE ?", {id: deleteEmployee}, function (err, res) {
+                    if (err) throw err;
+                        decisions();
+                })
+
+                console.log(deleteEmployee);
+
+            })
+    });
+
 };
 
 function updateEmployeeRole() {
@@ -406,3 +436,4 @@ function viewAllRoles() {
         });
 
 }
+

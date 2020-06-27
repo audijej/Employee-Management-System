@@ -41,4 +41,5 @@ VALUES (1, "CEO", 11500000.00, 1), (2, "CFO", 8000000, 1), (3, "Lawyer", 160000,
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
 VALUES (1, "Bill", "Gates", 1, 1), (2, "Paul", "Allen", 2, 2), (3, "Michelle", "Smith", 5, 10), (4, "Ron", "Burgundy", 4, 22), 
 (5, "Michael", "Jordan", 3, 22), (6, "Angelina", "Jolie", 6, 22), (7, "Brad", "Pitt", 10, 22), (8, "Keeanu", "Reeves", 7, 22), 
-(9, "Jennifer", "Anniston", 8, 22), (10, "Halley", "Berry", 8, 22), (11, "Paul", "Walker", 9, 22);
+(9, "Jennifer", "Anniston", 8, 22), (10, "Halley", "Berry", 8, 22), (11, "Paul", "Walker", 11, 50), (12, "Elon", "Musk", 11, 51),
+(13, "Steve", "Jobs", 11, 52), (14, "Warren", "Buffet", 11, 53);
