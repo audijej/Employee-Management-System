@@ -357,7 +357,13 @@ function addRole() {
             let newRole = [answer.addRoleId, answer.addRoleTitle, answer.addRoleSalary, answer.addRoleDepartmentId];
             roleArray.push(newRole);
             console.log(newRole);
-            decisions();
+
+            var query = "INSERT INTO role VALUES (?,?,?,?)";
+            connection.query(query, newRole, function (err, res) {
+                if (err) throw err;
+                console.table(res);
+                decisions();
+            });
         })
 }
 // Needs more work
