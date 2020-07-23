@@ -388,8 +388,12 @@ function addDepartment() {
             let newDepartment = [answer.addDepartmentId, answer.addDepartmentName];
             departmentArray.push(newDepartment);
             console.log(newDepartment);
-            decisions();
-        })
+            var query = "INSERT INTO department VALUES (?,?)";
+            connection.query(query, newDepartment, function (err, res) {
+                if (err) throw err;
+                console.table(res);
+                decisions();
+            });        })
 }
 
 function removeEmployee() {
