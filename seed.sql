@@ -19,9 +19,9 @@ CREATE TABLE roles (
 
 CREATE TABLE employee (
   employee_id INT NOT NULL AUTO_INCREMENT,
-  first_name VARCHAR(30) NULL,
-  last_name VARCHAR(30) NULL,
-  roles_id INT,
+  first_name VARCHAR(30) NOT NULL,
+  last_name VARCHAR(30) NOT NULL,
+  roles_id INT NULL,
   manager_id INT,
   PRIMARY KEY (employee_id)  
 );
@@ -39,7 +39,7 @@ VALUES (1, "CEO", 11500000.00, 1), (2, "CFO", 8000000, 1), (3, "Lawyer", 160000,
 (9, "Sales Rep", 45000, 6), (10, "Sales Rep Supervisor", 55000, 6), (11, "Manager", 75000, 7);
 
 INSERT INTO employee (employee_id, first_name, last_name, roles_id, manager_id)
-VALUES (1, "Bill", "Gates", 1, 1), (2, "Paul", "Allen", 2, 2), (3, "Michelle", "Smith", 5, 10), (4, "Ron", "Burgundy", 4, 22), 
-(5, "Michael", "Jordan", 3, 22), (6, "Angelina", "Jolie", 6, 22), (7, "Brad", "Pitt", 10, 22), (8, "Keeanu", "Reeves", 7, 22), 
-(9, "Jennifer", "Anniston", 8, 22), (10, "Halley", "Berry", 8, 22), (11, "Paul", "Walker", 11, 50), (12, "Elon", "Musk", 11, 51),
-(13, "Steve", "Jobs", 11, 52), (14, "Warren", "Buffet", 11, 53);
+VALUES (1, "Bill", "Gates", 1, 1), (2, "Paul", "Allen", 2, 2), (3, "Michelle", "Smith", 5, 11), (4, "Ron", "Burgundy", 4, 12), 
+(5, "Michael", "Jordan", 3, 13), (6, "Angelina", "Jolie", 6, 14), (7, "Brad", "Pitt", 10, 11), (8, "Keeanu", "Reeves", 7, 11), 
+(9, "Jennifer", "Anniston", 8, 12), (10, "Halley", "Berry", 8, 13), (11, "Paul", "Walker", 11, 14), (12, "Elon", "Musk", 11, 12),
+(13, "Steve", "Jobs", 11, 13), (14, "Warren", "Buffet", 11, 14);
